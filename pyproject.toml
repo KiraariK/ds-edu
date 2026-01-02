@@ -1,0 +1,75 @@
+[project]
+name = "ds-edu"
+version = "0.1.0"
+description = "Projects to learn DS/ML"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.5.1",
+    "ruff>=0.14.10",
+]
+
+[tool.uv.workspace]
+members = [
+    "projects/karpathys_nnzth",
+]
+
+[tool.ruff]
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+    "notebooks",
+    "*.ipynb",
+    "*.yaml",
+    "*.sh",
+    "*.md",
+    "*.Dockerfile",
+    "*docker_config*",
+    ".gitignore",
+    "*docker-compose*",
+]
+target-version = "py312"
+line-length = 100
+indent-width = 4
+
+[tool.ruff.lint]
+select = ["E4", "E5", "E7", "E9", "F", "I", "B", "A", "C4", "COM", "N", "ICN", "ANN", "D"]
+ignore = ["E402", "ANN101", "ANN003", "ANN401", "D1", "N806", "N803"]
+fixable = ["ALL"]
+unfixable = ["F401"]
+pydocstyle.convention = "google"
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+docstring-code-format = false
+docstring-code-line-length = "dynamic"

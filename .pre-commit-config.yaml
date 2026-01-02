@@ -1,0 +1,55 @@
+default_stages: [pre-commit, pre-push]
+
+exclude: |
+  (?x)^(
+    \.venv/|
+    \.mypy_cache/|
+    \.ruff_cache/|
+    \.pytest_cache/|
+    data/|
+    artifacts/|
+    models/|
+    reports/|
+    .*\.parquet$|
+    .*\.feather$|
+    .*\.csv$|
+    .*\.pkl$|
+    .*\.joblib$
+  )
+
+repos:
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.9.21
+    hooks:
+      - id: uv-lock
+      # Optional: export a requirements.txt for platforms that don't use uv
+      # - id: uv-export
+      #   args: [--format, requirements-txt, --output-file, requirements.txt]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-yaml
+      - id: check-toml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: check-added-large-files
+        args: [--maxkb=10240]  # 10MB
+      - id: detect-private-key
+      - id: check-merge-conflict
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.10
+    hooks:
+      - id: ruff
+        types_or: [ python, pyi ]
+        args: [--fix, --exit-non-zero-on-fix]
+      - id: ruff-format
+        types_or: [ python, pyi ]
+
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.8.2
+    hooks:
+      - id: nbstripout
+        files: \.ipynb$
