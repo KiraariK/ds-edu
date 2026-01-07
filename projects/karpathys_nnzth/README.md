@@ -1,4 +1,4 @@
-# Neural Networks from-zero-to-ghero by Andrej Karpathy
+# Neural Networks from-zero-to-hero by Andrej Karpathy
 
 The artifacts of the free course.
 
